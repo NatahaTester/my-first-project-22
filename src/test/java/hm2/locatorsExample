@@ -1,0 +1,52 @@
+//все локаторы написанны по очередности как на кртинке с отмеченными элементами
+//_______________________________HOME_PAGE________________________________
+//............TOOL-BAR............
+    .//div [@class = 'logo']
+    .//a [@class = 'navigation-link choose-currency']
+    .//a [@class = 'navigation-link action my-booking trigger-login-modal pointer']
+
+//.........FIRST_BODY_TABLE.......
+    .//div [@class = 'home-caption']
+    .//div [@class = 'fake-field clearfix']
+    .//u [@id = 'sb-country']
+    .//div [@class = 'sb-button']
+
+//........SECOND_BODY_TABLE.......
+    .//div [@class = 'svg-slider-arrow']
+    .//div [@class = 'tp-widget-review']    or    .//div [@id = 'tp-widget-reviews']/div[4]
+
+//.........THIRD_BODY_TABLE.......
+    .//div [@class = 'row is-table-row']
+
+//____________________________CARS_PAGE_____________________________________
+//......CARS_TOP_FILTER_BOX.......
+    .//div [@class = 'car-top-filter-item car-groups-item filtering-event init']  -->
+        or   .//div [@class = 'car-top-filter-slider']/div[1]
+    .//div [@class = 'car-top-filter-control next']
+
+//..........SHOWING_LIST..........
+    .//span [@class = 'showing-cars']
+    .//div [@class = 'dc-ui dropdown inline-block']
+
+//.........CARS_TABLE_1.............
+    .//div [@class = 'car-basic-info']/ul/li/span  -->
+        or  .//div [@class = 'car-basic-info']/ul/li[2]/span
+    .//div [@class = 'rc-link']
+    .//a [@class = 'btn btn-book submit click-on-car selected-car prevent-loading']
+
+//.........CARS_TABLE_2.............
+    .//div [@class = 'dc-ui badges mt-12']/span[2]  -->
+        or  .//div [@id = 'car-box-container']/div[2]/div/div/div[2]/div/div[2]/span
+    .//div [@class = 'supplier-rating']  -->
+        or  .//div [@id = 'car-box-container']/div[2]/div[2]/div/div/div/div[2]/div
+    .//div [@class = 'price-item-price-main'] -->
+        or  .//div [@id = 'car-box-container']/div[2]/div[2]/div/div[2]/div/div/div/div/div/div/div[2]
+
+//.......BODY_LEFT_COLUMN.........
+    .//div [@class = 'flt-type']
+    .//div [@class = 'flt-opts flt-group opened multiple']/label/span  -->
+        or  .//div [@class = 'flt-body']/div[5]/div[2]/div/label/span
+!    .//div [@id = 'filter-fuel-type']/label  -->
+        or  .//div [@class = 'flt-body']/div[5]/div[2]/div[3]/label[3]
+    .//div [@id = 'filter-number-of-seats']/label  -->
+        or  .//div [@class = 'flt-body']/div[6]/div[2]/label
