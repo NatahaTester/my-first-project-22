@@ -50,3 +50,8 @@
         or  .//div [@class = 'flt-body']/div[5]/div[2]/div[3]/label[3]
     .//div [@id = 'filter-number-of-seats']/label  -->
         or  .//div [@class = 'flt-body']/div[6]/div[2]/label
+
+//____________________LOADING_PAGE__________________________
+    .//div [@class = 'lds-ellipsis v2']
+    .//div [@class = 'mb-8 text-24 text-bold text-center']
+    .//div [@class = 'mb-24 text-center']
