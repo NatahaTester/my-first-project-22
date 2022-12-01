@@ -84,5 +84,6 @@ public class Airport {
         WebElement input = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         input.clear();
         input.sendKeys(text);
+
     }
 }
