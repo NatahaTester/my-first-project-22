@@ -1,15 +1,19 @@
 package hm4;
 
+import dev.failsafe.internal.util.Assert;
+import jdk.jfr.Timespan;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.Text;
 
+import javax.management.BadAttributeValueExpException;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class Airport {
     private final By FROM = By.id("afrom");
@@ -23,36 +27,44 @@ public class Airport {
     private final By CHILDREN = By.id("children");
     private final By BAG = By.id("bugs");
     private final By FLIGHT = By.id("flight");
-    private final By PRICE_BTN = By.xpath("//*[text() = 'Get Price']");
+    private final By PRICE_BTN = By.xpath(".//span [@onclick = 'setLang();']");
 
     private final By DEST_IS = By.xpath(".//span[@class = 'bTxt']");
     private final By DEST_TO = By.xpath(".//div[@class = 'infoTxt']/span[2]");
+    private final By FLIYNG_FROM = By.xpath(".//div [@class = 'responsePrice']/span[2]");
+    private final By FLYING_TO = By.xpath(".//div [@class = 'responsePrice']/span[3]");
 
     //private final By MR_MS_NAME = By.xpath(".//div[@class = 'responsePrice']/span");
     //private final By PRICE = By.xpath();
 
     private final By BOOK_BTN = By.xpath(".//div [@class = 'infoBox']/span");
 
-    private final By SEAT = By.xpath(".//*[text() = '9']");
+    private final By SEAT = By.xpath(".//div [@class = 'nrblock']/div[4]/div");
 
     private final By BOOK_BTN_TWO = By.xpath(".//div [@class = 'infoBox']/span[2]");
 
     private WebDriver browser;
     private WebDriverWait wait;
 
+
     @Test
     public void reservationCheck() {
-        System.setProperty("webdriver.chrome.driver","C://chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
         browser = new ChromeDriver();
         browser.manage().window().maximize();
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         browser.get("http://www.qaguru.lv:8089/tickets/");
 
-        wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+        wait = new WebDriverWait(browser, Duration.ofSeconds(5));
+
 
         select(FROM, "RIX");
         select(TO, "SFO");
 
         browser.findElement(GO_BTN).click();
+
+        //Assertions.assertEquals(DEST_IS, DEST_TO, "Wrong Airport");
+        //Assertions.assertEquals(TO, DEST_TO, "Wrong Airport");
 
         type(FIRST_NAME, "Nataha");
         type(LAST_NAME, "Koska");
@@ -62,10 +74,9 @@ public class Airport {
         type(BAG, "1");
         select(FLIGHT, "11");
 
-        browser.findElement(DEST_IS);
-        browser.findElement(DEST_TO);
-
         browser.findElement(PRICE_BTN).click();
+
+        //Assertions.assertEquals(FLIYNG_FROM, FLIYNG_FROM, "Wrong Airport");
 
         browser.findElement(BOOK_BTN).click();
 
