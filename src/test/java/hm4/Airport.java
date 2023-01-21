@@ -31,7 +31,7 @@ public class Airport {
 
     private final By DEST_IS = By.xpath(".//span[@class = 'bTxt']");
     private final By DEST_TO = By.xpath(".//div[@class = 'infoTxt']/span[2]");
-    private final By FLIYNG_FROM = By.xpath(".//div [@class = 'responsePrice']/span[2]");
+    private final By FLYING_FROM = By.xpath(".//div [@class = 'responsePrice']/span[2]");
     private final By FLYING_TO = By.xpath(".//div [@class = 'responsePrice']/span[3]");
 
     //private final By MR_MS_NAME = By.xpath(".//div[@class = 'responsePrice']/span");

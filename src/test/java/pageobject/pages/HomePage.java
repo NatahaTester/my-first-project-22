@@ -17,7 +17,5 @@ public class HomePage {
         baseFunc.select(FROM, from);
         baseFunc.select(TO, to);
         baseFunc.click(GO_BTN);
-
-
     }
 }
