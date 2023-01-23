@@ -38,8 +38,8 @@ public class PassengerInfoPage {
 
         baseFunc.click(PRICE_BTN);
         baseFunc.waitForElementsCountToBe(RESERVATION_INFO, 5);
-
     }
+
     public String getFirstFromAirport() {
         return baseFunc.findElements(RESERVATION_INFO).get(0).getText();
     }

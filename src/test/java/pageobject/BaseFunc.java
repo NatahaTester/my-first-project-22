@@ -31,6 +31,7 @@ public class BaseFunc {
         }
 
         browser.get(url);
+
     }
 
     public void click(By locator) {

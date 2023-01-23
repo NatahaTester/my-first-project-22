@@ -13,6 +13,7 @@ public class HomePage {
         this.baseFunc = baseFunc;
     }
 
+
     public void selectAirports(String from, String to) {
         baseFunc.select(FROM, from);
         baseFunc.select(TO, to);
