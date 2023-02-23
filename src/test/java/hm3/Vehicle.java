@@ -5,7 +5,6 @@ public class Vehicle {
     private int fuelConsumption;
     private int fuelTankCapacity;
 
-
     public String getVehicleType() {
         return vehicleType;
     }
