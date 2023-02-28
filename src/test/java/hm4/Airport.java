@@ -1,19 +1,14 @@
 package hm4;
 
-import dev.failsafe.internal.util.Assert;
-import jdk.jfr.Timespan;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.w3c.dom.Text;
 
-import javax.management.BadAttributeValueExpException;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 public class Airport {
     private final By FROM = By.id("afrom");
@@ -29,17 +24,12 @@ public class Airport {
     private final By FLIGHT = By.id("flight");
     private final By PRICE_BTN = By.xpath(".//span [@onclick = 'setLang();']");
 
-    private final By DEST_IS = By.xpath(".//span[@class = 'bTxt']");
-    private final By DEST_TO = By.xpath(".//div[@class = 'infoTxt']/span[2]");
-    private final By FLYING_FROM = By.xpath(".//div [@class = 'responsePrice']/span[2]");
-    private final By FLYING_TO = By.xpath(".//div [@class = 'responsePrice']/span[3]");
-
-    //private final By MR_MS_NAME = By.xpath(".//div[@class = 'responsePrice']/span");
-    //private final By PRICE = By.xpath();
+    private final By RESERVATION_INFO = By.xpath(".//span[@class = 'bTxt']");
 
     private final By BOOK_BTN = By.xpath(".//div [@class = 'infoBox']/span");
 
-    private final By SEAT = By.xpath(".//div [@class = 'nrblock']/div[4]/div");
+    private final By SEAT = By.xpath(".//div [@class = 'seat']");
+    private final By YOUR_SEAT = By.xpath("//div [@class = 'line']");
 
     private final By BOOK_BTN_TWO = By.xpath(".//div [@class = 'infoBox']/span[2]");
 
@@ -57,14 +47,26 @@ public class Airport {
 
         wait = new WebDriverWait(browser, Duration.ofSeconds(5));
 
-
         select(FROM, "RIX");
         select(TO, "SFO");
 
         browser.findElement(GO_BTN).click();
 
-        //Assertions.assertEquals(DEST_IS, DEST_TO, "Wrong Airport");
-        //Assertions.assertEquals(TO, DEST_TO, "Wrong Airport");
+        List<WebElement> destFrom = browser.findElements(RESERVATION_INFO);
+        String text = destFrom.get(0).getText();
+        if (text.contains("RIX")) {
+            System.out.println("first page RIX found");
+        } else {
+            System.out.println("doesnt work");
+        }
+
+        List<WebElement> destTo = browser.findElements(RESERVATION_INFO);
+        String textOne = destTo.get(1).getText();
+        if (textOne.contains("SFO")) {
+            System.out.println("first page SFO found");
+        } else {
+            System.out.println("doesnt work");
+        }
 
         type(FIRST_NAME, "Nataha");
         type(LAST_NAME, "Koska");
@@ -76,11 +78,58 @@ public class Airport {
 
         browser.findElement(PRICE_BTN).click();
 
-        //Assertions.assertEquals(FLIYNG_FROM, FLIYNG_FROM, "Wrong Airport");
+        List<WebElement> firstDestFrom = browser.findElements(RESERVATION_INFO);
+        String firstTextFrom = firstDestFrom.get(0).getText();
+        if (firstTextFrom.contains("RIX")) {
+            System.out.println("second page first line RIX found");
+        } else {
+            System.out.println("doesnt work");
+        }
+
+        List<WebElement> firstDestTo = browser.findElements(RESERVATION_INFO);
+        String firstTextTo = firstDestTo.get(1).getText();
+        if (firstTextTo.contains("SFO")) {
+            System.out.println("second page first line SFO found");
+        } else {
+            System.out.println("doesnt work");
+        }
+
+        List<WebElement> secondDestFrom = browser.findElements(RESERVATION_INFO);
+        String secondTextFrom = secondDestFrom.get(3).getText();
+        if (secondTextFrom.contains("RIX")) {
+            System.out.println("second page second line RIX found");
+        } else {
+            System.out.println("doesnt work");
+        }
+
+        List<WebElement> secondDestTo = browser.findElements(RESERVATION_INFO);
+        String secondTextTo = secondDestTo.get(4).getText();
+        if (secondTextTo.contains("SFO")) {
+            System.out.println("second page second line SFO found");
+        } else {
+            System.out.println("doesnt work");
+        }
+
+        List<WebElement> name = browser.findElements(RESERVATION_INFO);
+        String nameText = name.get(2).getText();
+        if (nameText.contains("Nataha")) {
+            System.out.println("name is here");
+        } else {
+            System.out.println("no name");
+        }
 
         browser.findElement(BOOK_BTN).click();
 
-        browser.findElement(SEAT).click();
+        List<WebElement> seat = browser.findElements(SEAT);
+        seat.get(5).click();
+
+        WebElement yourSeat = browser.findElement(YOUR_SEAT);
+        String seatText = yourSeat.getText();
+        if (seatText.contains("Your seat is: 6")) {
+            System.out.println("your seat is correct");
+        } else {
+            System.out.println("no your seat");
+        }
 
         browser.findElement(BOOK_BTN_TWO).click();
     }
@@ -97,4 +146,6 @@ public class Airport {
         input.sendKeys(text);
 
     }
+
+
 }
