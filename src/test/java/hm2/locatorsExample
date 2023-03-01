@@ -13,15 +13,14 @@
 
 //........SECOND_BODY_TABLE.......
     .//div [@class = 'svg-slider-arrow']
-    .//div [@class = 'tp-widget-review']    or    .//div [@id = 'tp-widget-reviews']/div[4]
+    .//div [@class = 'tp-widget-review']
 
 //.........THIRD_BODY_TABLE.......
     .//div [@class = 'row is-table-row']
 
 //____________________________CARS_PAGE_____________________________________
 //......CARS_TOP_FILTER_BOX.......
-    .//div [@class = 'car-top-filter-item car-groups-item filtering-event init']  -->
-        or   .//div [@class = 'car-top-filter-slider']/div[1]
+    .//div [@class = 'car-top-filter-item car-groups-item filtering-event init']
     .//div [@class = 'car-top-filter-control next']
 
 //..........SHOWING_LIST..........
